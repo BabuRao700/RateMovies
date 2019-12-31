@@ -31,6 +31,12 @@ public class MovieLoadService {
         log.info("movies loaded to database.....");
     }
 
+    public List<Movie> getMovies() {
+        List<Movie> movies = new ArrayList<>();
+        movieLoadRepository.findAll().forEach(m -> movies.add(m));
+        return movies;
+    }
+
     private List<Movie> getAllMovies(List<MovieDBMovie> moviesFromService) {
         List<Movie> movies = new ArrayList<>();
         moviesFromService.stream()
