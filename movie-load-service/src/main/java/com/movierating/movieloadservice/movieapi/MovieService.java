@@ -29,7 +29,7 @@ public class MovieService {
         Type listType = new TypeToken<List<MovieDBMovie>>(){}.getType();
         List<MovieDBMovie> movieList = new Gson().fromJson(results, listType);
 
-        log.debug("Public Api responded with the response:", results);
+        log.info("Public Api responded with the response:", results);
         return movieList;
     }
 
