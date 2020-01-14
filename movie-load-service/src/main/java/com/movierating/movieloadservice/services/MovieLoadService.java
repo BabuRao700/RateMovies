@@ -1,5 +1,6 @@
 package com.movierating.movieloadservice.services;
 
+import com.movierating.movieloadservice.Constants;
 import com.movierating.movieloadservice.models.Movie;
 import com.movierating.movieloadservice.models.MovieDBMovie;
 import com.movierating.movieloadservice.movieapi.MovieService;
@@ -7,9 +8,13 @@ import com.movierating.movieloadservice.repository.MovieLoadRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +35,7 @@ public class MovieLoadService {
         List<MovieDBMovie> movieList = movieService.getCurrentlyPlayingMovies();
         List<Movie> movies = getAllMovies(movieList);
         movieLoadRepository.saveAll(movies);
+        savePosterForTheMovies(movies);
         log.info("{0} movies loaded to database", movies.size());
     }
 
@@ -57,5 +63,19 @@ public class MovieLoadService {
                 });
 
         return movies;
+    }
+
+    private void savePosterForTheMovies(List<Movie> movies) {
+        movies.stream()
+                .forEach(m -> {
+                    try {
+                        ResponseEntity<byte[]> responseImage = movieService.getImageByPosterPath(m.getPosterPath());
+                        File outputFile = new File(Constants.imagesSavedLocation + m.getTitle() + ".jpg");
+                        OutputStream outputStream = new FileOutputStream(outputFile);
+                        outputStream.write(responseImage.getBody());
+                    }catch (Exception e){
+                        log.error("problem saving images", e);
+                    }
+                });
     }
 }

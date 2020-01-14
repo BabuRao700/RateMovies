@@ -2,18 +2,26 @@ package com.movierating.movieloadservice.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.movierating.movieloadservice.Constants;
 import com.movierating.movieloadservice.models.Movie;
 import com.movierating.movieloadservice.models.MovieDBMovie;
 import com.movierating.movieloadservice.movieapi.MovieService;
 import com.movierating.movieloadservice.services.MovieLoadService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Slf4j
@@ -49,6 +57,13 @@ public class MovieLoadController {
             log.info("error while fetching movies from DB");
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(path = "/get-image-with-media-type", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getMoviePoster(@RequestParam("movieName") String movieName) throws IOException {
+        File image = new File(Constants.imagesSavedLocation + movieName + ".jpg");
+        InputStream imageStream = FileUtils.openInputStream(image);
+        return new ResponseEntity<>(IOUtils.toByteArray(imageStream), HttpStatus.ACCEPTED);
     }
 
     public Gson getGson() {

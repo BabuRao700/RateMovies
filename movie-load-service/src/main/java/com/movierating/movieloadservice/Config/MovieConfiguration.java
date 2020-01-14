@@ -16,7 +16,7 @@ public class MovieConfiguration {
     @Autowired
     private MovieLoadService movieLoadService;
 
-    @Scheduled(cron = "*/5 * * * * *")
+    @Scheduled(cron = "0 0 8 * * *")
     private void getMoviesFromPublicApi() {
         movieLoadService.loadCurrentlyPlayingMovies();
         log.info("cron job executed!!");
