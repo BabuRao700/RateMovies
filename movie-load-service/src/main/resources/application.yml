@@ -35,6 +35,20 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
 
+  application:
+    name: movieloadservice
+  profiles:
+    active: default
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
+
 
 
 
