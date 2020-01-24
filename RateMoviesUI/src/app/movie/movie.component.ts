@@ -7,9 +7,6 @@ import { Movie } from '../models/movie';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-
-  @Input() 
-  inputMovie: Movie;
   
   constructor() { }
 

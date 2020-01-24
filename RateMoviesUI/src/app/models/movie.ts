@@ -1,11 +1,12 @@
-export class Movie {
-    movieId: number;
-    id: number;
-    title: String;
-    originalTitle: String;
-    releaseDate: String;
-    posterPath: String;
-    originalLanguage: String;
-    adult: Boolean;
-    overview: String
+export interface Movie {
+     movieId: number;
+     id: number;
+     title: string;
+     originalTitle: string;
+     releaseDate: string;
+     posterPath: string;
+     originalLanguage: string;
+     adult: boolean;
+     overview: string;
+     poster?: any
 }

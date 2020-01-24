@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MoviematerialModule } from './moviematerial/moviematerial.module';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovielistComponent,
     MovieComponent,
-    HomeComponent
+    HomeComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

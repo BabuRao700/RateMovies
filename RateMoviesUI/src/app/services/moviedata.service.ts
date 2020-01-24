@@ -10,7 +10,7 @@ export class MoviedataService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<Movie> {
-    return this.http.get<Movie>('http://localhost:8080/movieapi/movies'); 
+  getMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>('http://localhost:8080/movieapi/movies'); 
   }
 }
