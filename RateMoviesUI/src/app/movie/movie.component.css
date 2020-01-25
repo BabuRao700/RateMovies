@@ -1,0 +1,20 @@
+.home-class {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.mat-card {
+    height: 450px;
+}
+
+.text-class {
+  padding: 5px;
+  margin: 0 auto;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: medium;
+}
+
+.storyline-class {
+  text-indent: 0%;
+  text-align: justify
+}

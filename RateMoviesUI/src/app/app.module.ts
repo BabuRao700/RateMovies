@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MoviematerialModule } from './moviematerial/moviematerial.module';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { RatingsComponent } from './ratings/ratings.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MovielistComponent,
     MovieComponent,
     HomeComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    RatingsComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MoviematerialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    BarRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
