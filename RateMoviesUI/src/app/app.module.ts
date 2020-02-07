@@ -14,6 +14,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { BarRatingModule } from "ngx-bar-rating";
+import { CommentsComponent } from './comments/comments.component';
+import { RateReviewDialogComponent } from './rate-review-dialog/rate-review-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { BarRatingModule } from "ngx-bar-rating";
     HomeComponent,
     ToolbarComponent,
     RatingsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    CommentsComponent,
+    RateReviewDialogComponent
   ],
   imports: [
     BrowserModule,
