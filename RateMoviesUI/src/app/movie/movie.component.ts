@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../models/movie';
 import { ImageService } from '../services/image.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { RateReviewDialogComponent } from '../rate-review-dialog/rate-review-dialog.component';
 
 
 export interface Tile {
@@ -18,14 +20,9 @@ export interface Tile {
 })
 export class MovieComponent implements OnInit {
 
-  tiles: Tile[] = [
-    {text: 'Three', cols: 2, rows: 1, color: '#DDBDF1'},
-    {text: 'Four', cols: 2, rows: 2, color: 'lightpink'},
-  ];
-  
   selectedMovie: Movie;
 
-  constructor(private imageService: ImageService, private domSanitizer : DomSanitizer) { }
+  constructor(private imageService: ImageService, private domSanitizer : DomSanitizer, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.selectedMovie = history.state.data;
@@ -36,6 +33,17 @@ export class MovieComponent implements OnInit {
         this.selectedMovie.poster = safeUrl;
       }, (error) => console.log("error while getting images", error))
     console.log(this.selectedMovie.poster);
+  }
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RateReviewDialogComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

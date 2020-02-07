@@ -5,7 +5,7 @@
       <img mat-card-image [src]='selectedMovie.poster'>
   </mat-card>
   </mat-grid-tile>
-  <mat-grid-tile  [colspan]="1" [rowspan]="5">
+  <mat-grid-tile  [colspan]="2" [rowspan]="5">
     <mat-card>
       <mat-card-header>
           <mat-card-title>{{selectedMovie.title}}</mat-card-title>
@@ -20,13 +20,13 @@
   </mat-grid-tile>
   <mat-grid-tile  [colspan]="1" [rowspan]="1">
     <app-ratings></app-ratings>
+    <div>IMDB Rating: 4.5</div>
   </mat-grid-tile>
-  <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
+  <mat-grid-tile  [colspan]="1" [rowspan]="1">
+    <button mat-raised-button (click)="openDialog()">Rate & Review</button>
+  </mat-grid-tile>
+  <mat-grid-tile  [colspan]="2" [rowspan]="4">
+    <app-comments></app-comments>
   </mat-grid-tile>
 </mat-grid-list>
 </div>
