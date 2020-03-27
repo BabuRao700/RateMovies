@@ -4,6 +4,8 @@ import { ImageService } from '../services/image.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RateReviewDialogComponent } from '../rate-review-dialog/rate-review-dialog.component';
+import { MoviedataService } from '../services/moviedata.service';
+import { Review } from '../models/review';
 
 
 export interface Tile {
@@ -24,7 +26,10 @@ export class MovieComponent implements OnInit {
   rating: number;
   review: string;
 
-  constructor(private imageService: ImageService, private domSanitizer : DomSanitizer, public dialog: MatDialog) { }
+  constructor(private imageService: ImageService, 
+    private movieDataService: MoviedataService,
+    private domSanitizer : DomSanitizer, 
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.selectedMovie = history.state.data;
@@ -45,7 +50,13 @@ export class MovieComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      let savedReview: Review = {
+        movieId: this.selectedMovie.movieId,
+        movieName: this.selectedMovie.title,
+        review: result[0]
+      }
+      console.log(savedReview);
+      this.movieDataService.saveReviews(savedReview)
     });
   }
 
