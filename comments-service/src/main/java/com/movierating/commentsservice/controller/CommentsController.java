@@ -33,9 +33,9 @@ public class CommentsController {
         }
     }
 
-    @PostMapping(path = "/reviews")
-    public ResponseEntity<String> getReviews(@RequestParam Integer movieId) {
-        List<Review> reviewList = commentsService.getReviewsByMovieId(movieId);
+    @GetMapping(path = "/reviews")
+    public ResponseEntity<String> getReviews(@RequestParam String movieId) {
+        List<Review> reviewList = commentsService.getReviewsByMovieId(Integer.parseInt(movieId));
         return new ResponseEntity<>(new Gson().toJson(reviewList), HttpStatus.OK);
     }
 

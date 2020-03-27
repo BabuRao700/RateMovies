@@ -39,7 +39,7 @@ export class MovieComponent implements OnInit {
         const safeUrl = this.domSanitizer.bypassSecurityTrustUrl(url);
         this.selectedMovie.poster = safeUrl;
       }, (error) => console.log("error while getting images", error))
-    console.log(this.selectedMovie.poster);
+    this.getReviews(this.selectedMovie.movieId);
   }
 
 
@@ -58,6 +58,12 @@ export class MovieComponent implements OnInit {
       console.log(savedReview);
       this.movieDataService.saveReviews(savedReview)
     });
+  }
+
+  getReviews(movieId: number) {
+    this.movieDataService.getReviewsById(movieId.toString()).subscribe(
+      (data) => console.log(data)
+    )
   }
 
 }

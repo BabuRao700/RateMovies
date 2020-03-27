@@ -28,6 +28,6 @@ export class MoviedataService {
 
   getReviewsById(id: string): Observable<Review[]> {
     let params = new HttpParams().set('movieId', id);
-    return this.http.get<Review[]>('http://localhost:8081/reviews-service/review', { params: params });
+    return this.http.get<Review[]>('http://localhost:8081/reviews-service/reviews', { params: params });
   }
 }
