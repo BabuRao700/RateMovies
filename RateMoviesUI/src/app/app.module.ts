@@ -11,11 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MoviematerialModule } from './moviematerial/moviematerial.module';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { RatingsComponent } from './ratings/ratings.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { CommentsComponent } from './comments/comments.component';
 import { RateReviewDialogComponent } from './rate-review-dialog/rate-review-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +24,13 @@ import { RateReviewDialogComponent } from './rate-review-dialog/rate-review-dial
     MovieComponent,
     HomeComponent,
     ToolbarComponent,
-    RatingsComponent,
     ReviewsComponent,
     CommentsComponent,
     RateReviewDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -39,6 +39,7 @@ import { RateReviewDialogComponent } from './rate-review-dialog/rate-review-dial
     BarRatingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RateReviewDialogComponent]
 })
 export class AppModule { }

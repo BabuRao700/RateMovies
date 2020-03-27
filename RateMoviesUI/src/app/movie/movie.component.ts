@@ -21,6 +21,8 @@ export interface Tile {
 export class MovieComponent implements OnInit {
 
   selectedMovie: Movie;
+  rating: number;
+  review: string;
 
   constructor(private imageService: ImageService, private domSanitizer : DomSanitizer, public dialog: MatDialog) { }
 
@@ -39,10 +41,11 @@ export class MovieComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(RateReviewDialogComponent, {
       width: '500px',
+      data: { rating: this.rating, review: this.review }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log(result);
     });
   }
 

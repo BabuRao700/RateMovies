@@ -1,8 +1,17 @@
-<div>
-    <div>
-        <app-ratings></app-ratings>
-    </div>
-    <div>
-        <app-comments></app-comments>
-    </div>
+<h4 mat-dialog-title>Rate and Review</h4>
+<div mat-dialog-content>
+<div class= "rating-bar-class">
+    <div class="label-class"><strong>Rating: </strong></div>
+    <span><bar-rating [(rate)]="data.rating" [max]="5" [theme]="'default'"></bar-rating></span>
+</div>
+  <mat-form-field  class= "review-class">
+    <mat-label>Review:</mat-label>
+    <textarea matInput  
+    [(ngModel)]="data.review">
+    </textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="[data.review, data.rating]" cdkFocusInitial>Ok</button>
 </div>

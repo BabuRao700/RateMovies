@@ -19,4 +19,8 @@ export class RateReviewDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
