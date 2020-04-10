@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from '../models/movie';
-import { ImageService } from '../services/image.service';
+import { Movie } from '../../models/movie';
+import { ImageService } from '../../services/image.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RateReviewDialogComponent } from '../rate-review-dialog/rate-review-dialog.component';
-import { MoviedataService } from '../services/moviedata.service';
-import { Review } from '../models/review';
+import { MoviedataService } from '../../services/moviedata.service';
+import { Review } from '../../models/review';
+import { error } from 'protractor';
 
 
 export interface Tile {
@@ -25,6 +26,7 @@ export class MovieComponent implements OnInit {
   selectedMovie: Movie;
   rating: number;
   review: string;
+  reviews: Review [] = [];
 
   constructor(private imageService: ImageService, 
     private movieDataService: MoviedataService,
@@ -53,16 +55,19 @@ export class MovieComponent implements OnInit {
       let savedReview: Review = {
         movieId: this.selectedMovie.movieId,
         movieName: this.selectedMovie.title,
-        review: result[0]
+        review: result[0],
+        postedTime: ''
       }
-      console.log(savedReview);
-      this.movieDataService.saveReviews(savedReview)
+      this.movieDataService.saveReviews(savedReview).subscribe(
+        (data) => console.log(data),
+        (error) => console.log(error)
+      )
     });
   }
 
   getReviews(movieId: number) {
     this.movieDataService.getReviewsById(movieId.toString()).subscribe(
-      (data) => console.log(data)
+      (data) => this.reviews = data
     )
   }
 

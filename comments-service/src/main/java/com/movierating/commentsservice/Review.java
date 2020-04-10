@@ -5,10 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -17,7 +15,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "REVIEWS")
 public class Review {
+
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer ID;
+
     @Column(name = "MOVIE_ID")
     private Integer movieId;
 
@@ -26,4 +28,7 @@ public class Review {
 
     @Column(name = "REVIEW")
     private String review;
+
+    @Column(name = "POSTED_TIME")
+    private String postedTime;
 }

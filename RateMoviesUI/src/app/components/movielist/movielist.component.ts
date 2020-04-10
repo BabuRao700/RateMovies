@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviedataService } from '../services/moviedata.service';
-import { Movie } from '../models/movie';
+import { MoviedataService } from '../../services/moviedata.service';
+import { Movie } from '../../models/movie';
 import { error } from 'util';
-import { ImageService } from '../services/image.service';
+import { ImageService } from '../../services/image.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
