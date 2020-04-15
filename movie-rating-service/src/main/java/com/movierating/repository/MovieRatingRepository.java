@@ -1,9 +1,11 @@
 package com.movierating.repository;
 
+import com.movierating.domain.Rating;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import com.movierating.domain.RatingEntity;
+@Repository
+public interface MovieRatingRepository extends CrudRepository<Rating, Integer> {
 
-public interface MovieRatingRepository extends  CrudRepository<RatingEntity,Integer> {
-
+    Rating findByMovieId(int movieId);
 }

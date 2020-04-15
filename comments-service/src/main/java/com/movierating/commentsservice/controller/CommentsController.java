@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Slf4j
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/reviews-service")
 public class CommentsController {

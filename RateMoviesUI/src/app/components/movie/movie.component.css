@@ -1,6 +1,6 @@
 .home-class {
   margin: 0 auto;
-  width: 80%;
+  width: 1200px;
 }
 
 .mat-card {
@@ -17,4 +17,9 @@
 .storyline-class {
   text-indent: 0%;
   text-align: justify
+}
+
+.review_class {
+  width: 1200px;
+  margin: 0 auto;
 }

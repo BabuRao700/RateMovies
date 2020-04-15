@@ -3,40 +3,35 @@ package com.movierating.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.*;
 
 import com.movierating.dtos.RatingDto;
 import com.movierating.services.MovieRatingServiceInterface;
 
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value="/rating")
+@RequestMapping(path = "/rating-service")
 public class MovieRatingController {
 	
 	private final MovieRatingServiceInterface movieRatingService;
 	
 	@Autowired
 	public MovieRatingController(MovieRatingServiceInterface movieRatingService) {
-		// TODO Auto-generated constructor stub
 		this.movieRatingService=movieRatingService;
 	}
 	
-	@RequestMapping(value = "/Save", method = RequestMethod.POST)
-	public ResponseEntity<RatingDto> saveRaing(RatingDto ratingDto)
+	@PostMapping(path = "/rating")
+	public ResponseEntity<RatingDto> saveRating(@RequestBody RatingDto ratingDto)
 	{
-		RatingDto ratingDtoresponse= this.movieRatingService.SaveRating(ratingDto);
-		
-		return new ResponseEntity<RatingDto>(ratingDtoresponse,HttpStatus.OK);
+		RatingDto ratingDtoResponse= movieRatingService.saveRating(ratingDto);
+		return new ResponseEntity<>(ratingDtoResponse, HttpStatus.OK);
 	}
-	@RequestMapping(value = "/Get", method = RequestMethod.GET)
-	public ResponseEntity<RatingDto> getMovieRating(int movieId)
-	{
-		RatingDto ratingDtoresponse= this.movieRatingService.GetRating(movieId);
-		
-		return new ResponseEntity<RatingDto>(ratingDtoresponse,HttpStatus.OK);
-	}
-	
-	
 
+	@GetMapping(path = "/ratings")
+	public ResponseEntity<RatingDto> getMovieRating(@RequestParam int movieId)
+	{
+		RatingDto ratingDto= movieRatingService.getRating(movieId);
+		return new ResponseEntity<>(ratingDto, HttpStatus.OK);
+	}
 }

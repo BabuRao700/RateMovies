@@ -18,6 +18,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material' 
+import { MatPaginatorModule } from '@angular/material'; 
 
 const modules: any[] = [
   MatAutocompleteModule,
@@ -37,6 +39,8 @@ const modules: any[] = [
   MatButtonModule,
   MatGridListModule,
   MatDialogModule,
+  MatTableModule,
+  MatPaginatorModule,
   CommonModule
 ];
 

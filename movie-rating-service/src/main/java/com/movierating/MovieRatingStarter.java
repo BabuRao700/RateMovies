@@ -1,4 +1,4 @@
-package com.movierating.starter;
+package com.movierating;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

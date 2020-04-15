@@ -23,3 +23,6 @@
   </mat-grid-tile>
 </mat-grid-list>
 </div>
+<div *ngIf="reviewed" class="review_class">
+  <app-review [reviews]='reviews'></app-review>
+</div>

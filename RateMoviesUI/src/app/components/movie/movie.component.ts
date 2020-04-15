@@ -27,6 +27,7 @@ export class MovieComponent implements OnInit {
   rating: number;
   review: string;
   reviews: Review [] = [];
+  reviewed = false;
 
   constructor(private imageService: ImageService, 
     private movieDataService: MoviedataService,
@@ -67,7 +68,10 @@ export class MovieComponent implements OnInit {
 
   getReviews(movieId: number) {
     this.movieDataService.getReviewsById(movieId.toString()).subscribe(
-      (data) => this.reviews = data
+      (data) => {
+        this.reviews = data
+        data.length !== 0 ? this.reviewed = true: this.reviewed = false;
+      }
     )
   }
 

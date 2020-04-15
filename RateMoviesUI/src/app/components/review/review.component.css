@@ -1,0 +1,43 @@
+
+.review-container {
+    position: relative;
+    min-height: 200px;
+    width:  100%;
+  }
+  
+.review-table-container {
+    position: relative;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.mat-table {
+    background: #fff;
+    width: 100%;
+}
+
+.mat-column-number {
+    flex: 0 0 10% !important;
+    width: 10% !important;
+}
+
+.mat-column-reviews {
+    flex: 0 0 80% !important;
+    width: 80% !important;
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+/* .number_col_class {
+    width:20%;
+}
+
+.review_col_class {
+    width: 80%;
+} */
