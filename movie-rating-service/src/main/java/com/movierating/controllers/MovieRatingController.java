@@ -11,7 +11,7 @@ import com.movierating.services.MovieRatingServiceInterface;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(path = "/rating-service")
+@RequestMapping(path = "/rating-api")
 public class MovieRatingController {
 	
 	private final MovieRatingServiceInterface movieRatingService;

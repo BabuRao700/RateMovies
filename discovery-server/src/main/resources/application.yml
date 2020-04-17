@@ -1,7 +1,4 @@
-server:
-  port: 8761
-
-#self registration not required
+##self registration not required
 eureka:
   client:
     register-with-eureka: false

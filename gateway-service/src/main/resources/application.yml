@@ -1,0 +1,14 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+
+
+zuul:
+  routes:
+    movie-load-service: /movie-service/**
+    rating-service: /rating-service/**
+    review-service: /review-service/**

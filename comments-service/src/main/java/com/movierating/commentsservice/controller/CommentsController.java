@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(path = "/reviews-service")
+@RequestMapping(path = "/reviews-api")
 public class CommentsController {
 
     @Autowired

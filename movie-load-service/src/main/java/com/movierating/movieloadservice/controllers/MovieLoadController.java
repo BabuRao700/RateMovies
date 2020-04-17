@@ -22,9 +22,9 @@ import java.io.InputStream;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(path = "/movieapi")
+@RequestMapping(path = "/movie-api")
 public class MovieLoadController {
 
     @Autowired
