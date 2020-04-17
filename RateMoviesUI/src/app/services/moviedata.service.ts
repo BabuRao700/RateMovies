@@ -3,18 +3,19 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 import { Review } from '../models/review';
-import { error } from 'protractor';
-import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviedataService {
+  movieServiceUrl: string = 'http://localhost:8080/movie-service/movie-api/movies';
+  reviewServiceUrl: string = 'http://localhost:8080/review-service/reviews-api';
 
   constructor(private http: HttpClient) { }
 
   getMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>('http://localhost:8080/movieapi/movies'); 
+    return this.http.get<Movie[]>(this.movieServiceUrl); 
   }
 
   saveReviews(review: Review): Observable<Review> {
@@ -23,12 +24,12 @@ export class MoviedataService {
         'Content-Type':  'application/json'
       })
     };
-   return this.http.post<Review>('http://localhost:8081/reviews-service/review', review, httpOptions);
+   return this.http.post<Review>(this.reviewServiceUrl + '/review', review, httpOptions);
   }
 
   getReviewsById(id: string): Observable<Review[]> {
     let params = new HttpParams().set('movieId', id);
-    return this.http.get<Review[]>('http://localhost:8081/reviews-service/reviews', { params: params });
+    return this.http.get<Review[]>(this.reviewServiceUrl + '/reviews', { params: params });
   }
 
 }

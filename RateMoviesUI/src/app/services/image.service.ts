@@ -10,8 +10,8 @@ export class ImageService {
 
   constructor(private http: HttpClient, private _sanitizer:DomSanitizer) { }
 
-  getImage(imageName: string): Observable<Blob> { debugger
-    return this.http.get("http://localhost:8080/movieapi/get-image-with-media-type", {
+  getImage(imageName: string): Observable<Blob> {
+    return this.http.get("http://localhost:8080/movie-service/movie-api/get-image-with-media-type", {
       params: new HttpParams().set('movieName', imageName),
       responseType: 'blob'
   })
