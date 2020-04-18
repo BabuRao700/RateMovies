@@ -4,5 +4,5 @@ import com.movierating.dtos.RatingDto;
 
 public interface MovieRatingServiceInterface {
 	RatingDto saveRating(RatingDto ratingDto);
-	RatingDto getRating(int ratingId);
+	RatingDto getRating(Integer ratingId);
 }

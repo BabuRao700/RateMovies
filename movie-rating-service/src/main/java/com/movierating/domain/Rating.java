@@ -19,7 +19,7 @@ public class Rating {
 	private int Id;
 
 	@Column(name = "movie_id")
-	private int movieId;
+	private Integer movieId;
 
 	@Column(name = "movie_name")
 	private String movieName;

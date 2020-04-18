@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovieRatingRepository extends CrudRepository<Rating, Integer> {
 
-    Rating findByMovieId(int movieId);
+    Rating findByMovieId(Integer movieId);
 }

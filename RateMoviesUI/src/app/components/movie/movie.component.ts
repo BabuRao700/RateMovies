@@ -7,6 +7,7 @@ import { RateReviewDialogComponent } from '../rate-review-dialog/rate-review-dia
 import { MoviedataService } from '../../services/moviedata.service';
 import { Review } from '../../models/review';
 import { error } from 'protractor';
+import { Rating } from 'src/app/models/rating';
 
 
 export interface Tile {
@@ -28,6 +29,7 @@ export class MovieComponent implements OnInit {
   review: string;
   reviews: Review [] = [];
   reviewed = false;
+  movieRating: number = 0;
 
   constructor(private imageService: ImageService, 
     private movieDataService: MoviedataService,
@@ -43,8 +45,8 @@ export class MovieComponent implements OnInit {
         this.selectedMovie.poster = safeUrl;
       }, (error) => console.log("error while getting images", error))
     this.getReviews(this.selectedMovie.movieId);
+    this.getMovieRating(this.selectedMovie.movieId);
   }
-
 
   openDialog(): void {
     const dialogRef = this.dialog.open(RateReviewDialogComponent, {
@@ -58,10 +60,16 @@ export class MovieComponent implements OnInit {
         movieName: this.selectedMovie.title,
         review: result[0],
         postedTime: ''
+      };
+      let savedRating: Rating = {
+        movieId: this.selectedMovie.movieId,
+        rating: result[1]
       }
       this.movieDataService.saveReviews(savedReview).subscribe(
-        (data) => console.log(data),
-        (error) => console.log(error)
+        (data) => this.getReviews(this.selectedMovie.movieId)
+      )
+      this.movieDataService.saveMovieRating(savedRating).subscribe(
+        (data) => this.movieRating = data.rating
       )
     });
   }
@@ -71,6 +79,14 @@ export class MovieComponent implements OnInit {
       (data) => {
         this.reviews = data
         data.length !== 0 ? this.reviewed = true: this.reviewed = false;
+      }
+    )
+  }
+
+  getMovieRating(movieId: number) {
+    this.movieDataService.getMovieRatingById(movieId.toString()).subscribe(
+      (data) => {
+        this.movieRating = data.rating;
       }
     )
   }

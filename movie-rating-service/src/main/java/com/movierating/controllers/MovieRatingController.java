@@ -29,9 +29,9 @@ public class MovieRatingController {
 	}
 
 	@GetMapping(path = "/ratings")
-	public ResponseEntity<RatingDto> getMovieRating(@RequestParam int movieId)
+	public ResponseEntity<RatingDto> getMovieRating(@RequestParam String movieId)
 	{
-		RatingDto ratingDto= movieRatingService.getRating(movieId);
+		RatingDto ratingDto= movieRatingService.getRating(Integer.parseInt(movieId));
 		return new ResponseEntity<>(ratingDto, HttpStatus.OK);
 	}
 }

@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RatingDto {
-	private int movieId;
+	private Integer movieId;
 	private float rating;
 }

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -36,12 +35,12 @@ public class MovieRatingService implements MovieRatingServiceInterface {
 						.noOfVotes(1).build();
 	}
 
-	public RatingDto getRating(int movieId) {
+	public RatingDto getRating(Integer movieId) {
 		Rating rating = movieRatingRepository.findByMovieId(movieId);
 		return getRatingDto(movieId, rating);
 	}
 
-	private RatingDto getRatingDto(int movieId, Rating rating) {
+	private RatingDto getRatingDto(Integer movieId, Rating rating) {
 		return RatingDto.builder()
 				.movieId(movieId)
 				.rating(rating.getAvgRating())
